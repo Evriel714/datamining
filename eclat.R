@@ -9,8 +9,9 @@ library(igraph)
 # rm.duplicates is to remove duplicates because the eclat algorithm cannot have duplicates
 dataset = read.transactions('Groceries.csv', sep = ',', rm.duplicates = TRUE)
 
-rules = eclat(data = dataset, parameter = list(support = 0.03, minlen = 2 ))
+itemsets = eclat(dataset, parameter = list(support = 0.03, minlen = 2 ))
+rules = ruleInduction(itemsets,transactions = dataset, confidence = .3)
 
-inspect(sort(rules, by="support")[1:10])
+inspect(sort(rules, by="lift"))
 
 plot(rules)
