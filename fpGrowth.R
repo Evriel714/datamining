@@ -1,22 +1,16 @@
-library("rCBA")
+library(arulesViz)
+library(tidyverse)
+library(repr)
+library(igraph)
+library(arules)
+library(fim4r)
+arules::fim4r()
 
+dataset = read.transactions('Groceries.csv', sep = ',', rm.duplicates = TRUE)
 
-dataset <- read.csv("Groceries.csv", header=FALSE, stringsAsFactors = TRUE)
-dataset <- dataset[-1, ]
-# dataset <- na.omit(dataset)
-# dataset <- dataset[rowSums(dataset == "") != ncol(dataset), ]
+# mine association rules with FPgrowth
+trules <- fim4r(dataset, method = "fpgrowth", target = "rules", supp = .03, conf = .3)
+inspect(sort(trules, by = "lift"))
 
-
-# Convert all columns to factors
-train <- sapply(dataset, as.factor)
-train <- data.frame(dataset, check.names=FALSE)
-txns <- as(train,"transactions")
-
-rules = rCBA::fpgrowth(txns, support=0.03, confidence=0.03, maxLength=2, parallel=FALSE, consequent = "margarine")
-
-inspect(sort(rules, by="lift"))
-
-summary(rules)
-
-plot(rules)
+plot(trules)
 

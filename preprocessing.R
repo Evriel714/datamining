@@ -1,5 +1,7 @@
+library(arules)
+
 # Step 1: Read the dataset as a data.frame
-dataset <- read.csv("C:/Users/Think/OneDrive/Desktop/datamining/Groceries_dataset2.csv")
+dataset <- read.csv("Groceries_dataset2.csv")
 
 # Step 2: Sort the dataset based on Member_number and Date
 datasetSorted <- dataset[order(dataset$Member_number, dataset$Date), ]
@@ -25,3 +27,11 @@ datasetTransactions <- as(split(datasetBaskets$Items, datasetBaskets$Member_numb
 # Step 5: Inspect the transaction summary
 print("Summary of transactions:")
 print(summary(datasetTransactions))
+
+file_name <- "transactions_data.csv"
+
+# Write the data frame to a CSV file
+write.csv(datasetBaskets, file = file_name, row.names = FALSE)
+
+# Print a message to confirm the file has been saved
+print(paste("Transactions saved to", file_name))

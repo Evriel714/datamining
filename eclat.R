@@ -1,5 +1,5 @@
-dataset = read.csv('Groceries.csv', header = FALSE)
-dataset = dataset[-1, ]
+# dataset = read.csv('Groceries.csv', header = FALSE)
+# dataset = dataset[-1, ]
 
 library(arules)
 library(arulesViz)
