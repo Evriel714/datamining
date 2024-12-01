@@ -1,7 +1,7 @@
 # henlo
 
 # Install the packages
-install.packages(c("arules", "arulesViz", "tidyverse", "repr", "igraph"))
+# install.packages(c("arules", "arulesViz", "tidyverse", "repr", "igraph"))
 
 # Load the libraries
 library(arules)
@@ -11,7 +11,7 @@ library(repr)
 library(igraph)
 
 
-groceries_data <- read.transactions("C:/Users/Think/OneDrive/Desktop/datamining/Groceries.csv", sep=",")
+groceries_data <- read.transactions("dataset2.csv", sep=",")
 
 
 inspect(groceries_data[1:10,])
@@ -27,7 +27,7 @@ itemFrequencyPlot(groceries_data, topN=15, type="absolute", col="orange2",xlab="
 itemFrequencyPlot(groceries_data, topN=15, type="relative", col="lightgreen", xlab="Item name", 
                   ylab="Frequency (relative)", main="Relative Item Frequency Plot")
 
-grocery_rules=apriori(groceries_data, parameter=list(support=.03, confidence=.3, minlen=2))
+grocery_rules=apriori(groceries_data, parameter=list(support=0.01, confidence=.1, minlen=2))
 summary(grocery_rules)
 
 inspect(sort(grocery_rules, by="lift"))
