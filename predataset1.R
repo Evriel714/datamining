@@ -29,5 +29,5 @@ print(head(dataset_basket))
 View(dataset_basket)
 
 # Optional: Save the modified dataset to a new CSV file
-write.csv(dataset_basket, "dataset_basket.csv", row.names = FALSE, quote = FALSE)
+write.csv(dataset_basket, "dataset_basket.csv",col.names = FALSE, row.names = FALSE, quote = FALSE)
 
