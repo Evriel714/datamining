@@ -1,5 +1,6 @@
 # Load the required libraries
 library(dplyr)
+library(tidyr)  # Load tidyr for pivot_longer function
 
 # Step 1: Load the dataset from the CSV file with the correct delimiter
 dataset <- read.csv("Groceries.csv", header = TRUE, sep = ",")
@@ -20,9 +21,13 @@ dataset_basket <- dataset %>%
   group_by(TransactionID) %>%
   summarise(Items = paste(Item, collapse = ", "))
 
+dataset_basket <- dataset_basket %>%
+  select(-TransactionID)
+
 # Step 5: View the modified dataset
 print(head(dataset_basket))
 View(dataset_basket)
 
 # Optional: Save the modified dataset to a new CSV file
-write.csv(dataset_basket, "dataset_basket.csv", row.names = FALSE)
+write.csv(dataset_basket, "dataset_basket.csv", row.names = FALSE, quote = FALSE)
+
