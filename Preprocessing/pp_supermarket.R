@@ -10,6 +10,8 @@ data_supermarket <- data_supermarket[!is.na(data_supermarket$Customer), ]
 colSums(is.na(data_supermarket))
 anyNA(data_supermarket)
 
+summary(data_supermarket)
+
 output <- data_supermarket %>%
   group_by(Invoice) %>%                          # Group by memberid and date
   summarize(itemdescs = list(Description), .groups = "drop") %>% # Combine itemdesc into a list

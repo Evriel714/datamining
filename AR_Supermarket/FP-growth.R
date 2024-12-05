@@ -7,10 +7,10 @@ data <- read.transactions("../Data/dataset_supermarket.csv", format = "basket", 
 inspect(data[1:10])
 summary(data)
 
-system.time({trules <- fim4r(data, method = "fpgrowth", target = "rules", supp = .01, conf = .1)
+system.time({rules <- fim4r(data, method = "fpgrowth", target = "rules", supp = 0.015, conf = 0.5)
 
-print(object.size(trules), units = "B")
-inspect(sort(trules, by = "lift"))})
+print(object.size(rules), units = "MB")
+inspect(sort(rules, by = "lift"))})
 
-plot(trules)
+plot(rules)
 
