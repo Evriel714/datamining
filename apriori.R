@@ -21,7 +21,11 @@ itemFrequencyPlot(groceries_data, topN = 15, type = "absolute", col = "orange2",
 itemFrequencyPlot(groceries_data, topN = 15, type = "relative", col = "lightgreen", xlab = "Item name", 
                   ylab = "Frequency (relative)", main = "Relative Item Frequency Plot")
 
-grocery_rules <- apriori(groceries_data, parameter = list(support = 0.03, confidence = 0.3))
+system.time({grocery_rules <- apriori(groceries_data, parameter = list(support = 0.05, confidence = 0.4))})
+
+# gc()
+print(object.size(grocery_rules), units = "B")
+
 summary(grocery_rules)
 
 inspect(sort(grocery_rules, by = "lift"))
