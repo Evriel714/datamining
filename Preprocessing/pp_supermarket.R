@@ -9,7 +9,7 @@ data_supermarket <- read.csv("../Data/supermarket_data.csv", header = TRUE)
 data_supermarket <- data_supermarket %>%
   filter(!is.na(Customer.ID)) %>%   # Remove rows with missing Customer.ID
   filter(Quantity > 0) %>%          # Remove rows with Quantity <= 0
-  filter(Price >= 1) %>%            # Remove rows with Price < 1
+  filter(Price > 0) %>%            # Remove rows with Price < 0
   mutate(Description = tolower(Description)) %>%  # Convert product descriptions to lowercase
   distinct()  # Remove duplicate rows
 
